@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.10.+'
+    }
+}
+
+
+apply plugin: 'android'
+
+android {
+    buildToolsVersion "19.0.3"	
+    compileSdkVersion 19
+
+defaultConfig {
+    minSdkVersion 11
+    targetSdkVersion 19
+    versionCode 1
+    versionName "1.0"
+}
+
+sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src/com/konstantinivanov/slideviewdemo']
+
+            res.srcDirs = ['res']	
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.12'
+}
