@@ -1,13 +1,4 @@
-/*
-*
-*
-*
-*
-*
-*
-*
-*
- */
+
 package com.konstantinivanov.slideviewdemo.activities;
 
 
