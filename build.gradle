@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.10.+'
+        classpath 'com.android.tools.build:gradle:0.11.+'
     }
 }
 
@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'android'
 
 android {
-    buildToolsVersion "19.0.3"	
+    buildToolsVersion "19.1.0"	
     compileSdkVersion 19
 
 defaultConfig {
@@ -25,16 +25,16 @@ defaultConfig {
 sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src/com/konstantinivanov/slideviewdemo']
-
-            res.srcDirs = ['res']	
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            res.srcDirs = ['res']
         }
     }
 
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 
@@ -43,6 +43,3 @@ repositories {
     mavenCentral()
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
-}

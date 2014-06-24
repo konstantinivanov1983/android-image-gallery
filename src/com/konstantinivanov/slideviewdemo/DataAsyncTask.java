@@ -1,12 +1,9 @@
 package com.konstantinivanov.slideviewdemo;
 
-//Используя AsynkTask елаем запрос сайту, получаем ответ в виде формата JSON
-//из JSON извлекаем адреса фотографий и добавляем в базу данных SQLite
-
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -20,42 +17,37 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class MyTask extends AsyncTask<String, Void, String> {
+import com.konstantinivanov.slideviewdemo.activities.MainActivity;
+import com.konstantinivanov.slideviewdemo.data.MyDataBase;
+
+public class DataAsyncTask extends AsyncTask<String, Void, String> {
 	
 	private static Context mContext;
+	MyDataBase db;
 	
-	MyDB db;
-	
-	public MyTask(Context context) {
+	public DataAsyncTask(Context context) {
 		mContext = context;
 	}
-	
-	public static Context getContext() {
-		return mContext;
-	}
-	
-	@Override
-	protected String doInBackground(String... instaURL) {
-		StringBuilder mStringBuilder = new StringBuilder();
-		
-		for (String searchURL : instaURL) {
-			HttpClient mClient = new DefaultHttpClient();
-			try {
-				HttpGet mGet = new HttpGet(searchURL);
-				HttpResponse mResponse = mClient.execute(mGet);
-				StatusLine searchStatus = mResponse.getStatusLine();
-				if (searchStatus.getStatusCode() == 200) {
-		
-					HttpEntity mEntity = mResponse.getEntity();
-					InputStream mContent = mEntity.getContent();
 
-					InputStreamReader mInput = new InputStreamReader(
-							mContent);
-					BufferedReader mReader = new BufferedReader(
-							mInput);
+	@Override
+	protected String doInBackground(String... instagramUrl) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (String searchURL : instagramUrl) {
+			HttpClient client = new DefaultHttpClient();
+			try {
+				HttpGet httpGet = new HttpGet(searchURL);
+				HttpResponse response = client.execute(httpGet);
+				StatusLine searchStatus = response.getStatusLine();
+				if (searchStatus.getStatusCode() == 200) {
+					HttpEntity entity = response.getEntity();
+					InputStream content = entity.getContent();
+					InputStreamReader input = new InputStreamReader(
+							content);
+					BufferedReader reader = new BufferedReader(
+                            input);
 					String lineIn;
-					while ((lineIn = mReader.readLine()) != null) {
-						mStringBuilder.append(lineIn);
+					while ((lineIn = reader.readLine()) != null) {
+						stringBuilder.append(lineIn);
 					}
 				} else
 					Log.d(MainActivity.TAG, "Error");
@@ -64,8 +56,7 @@ public class MyTask extends AsyncTask<String, Void, String> {
 				e.printStackTrace();
 			}
 		}
-		return mStringBuilder.toString();
-		
+		return stringBuilder.toString();
 	}
 
 	protected void onPostExecute(String result) {
@@ -73,8 +64,13 @@ public class MyTask extends AsyncTask<String, Void, String> {
 		try {
 			JSONObject jsonObject = (JSONObject) new JSONTokener(result).nextValue();
 			JSONArray jsonArray = jsonObject.getJSONArray("data");
-			db = new MyDB(mContext);
-			db.open();
+			db = new MyDataBase(mContext);
+            try {
+                db.open();
+            } catch (Exception e) {
+                Log.d(MainActivity.TAG,"Error DataBase open");
+                e.printStackTrace();
+            }
 			for (int i = 0; i<jsonArray.length(); i++) {
 				JSONObject json = jsonArray.getJSONObject(i).getJSONObject("images").getJSONObject("low_resolution");
 				String imageUrlString = json.getString("url");

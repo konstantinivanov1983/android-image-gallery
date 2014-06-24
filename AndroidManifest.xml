@@ -11,11 +11,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.konstantinivanov.slideviewdemo.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="LoginInstagram" android:name="Login"></activity>
-        <activity android:label="SlideView" android:name="InstagramImage"></activity>
+        <activity android:label="LoginInstagram" android:name=".activities.LoginActivity"></activity>
+        <activity android:label="SlideView" android:name=".activities.InstagramImageActivity"></activity>
     </application>
 
 </manifest>
