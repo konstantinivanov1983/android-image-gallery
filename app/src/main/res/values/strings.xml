@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -12,3 +13,19 @@
     <string name="CLIENT_ID_YOUTUBE">798125345111-g2umdkt13lbe51i03v2vo7k96gtuhnpf.apps.googleusercontent.com</string>
 
 </resources>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyGalleryDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_login">Login to Imgur</string>
+    <string name="button_logout">Logout</string>
+    <string name="view_galery">View Pictures</string>
+    <string name="login">LoginActivity</string>
+    <string name="title_activity_activity_next">Login</string>
+    <color name="background_color">#646464</color>
+    <string name="CLIENT_ID_YOUTUBE">798125345111-g2umdkt13lbe51i03v2vo7k96gtuhnpf.apps.googleusercontent.com</string>
+
+</resources>
+>>>>>>> 1970ca9b1af3033d4f4009e26097a64323f4d52d
