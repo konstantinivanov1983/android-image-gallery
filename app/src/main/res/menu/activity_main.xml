@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,16 +9,3 @@
         />
 
 </menu>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ActivityMain" >
-
-    <item android:id="@+id/action_logout"
-        android:title="Logout"
-        />
-
-</menu>
->>>>>>> 1970ca9b1af3033d4f4009e26097a64323f4d52d

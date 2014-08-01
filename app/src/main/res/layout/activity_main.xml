@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,50 +43,3 @@
         android:onClick="onClick"/>
 
 </RelativeLayout>
-=======
-<?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".ActivityMain">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_login"
-        android:id="@+id/button_login"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:enabled="false"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_logout"
-        android:id="@+id/button_logout"
-        android:layout_below="@+id/button_login"
-        android:layout_centerHorizontal="true"
-        android:enabled="false"
-        android:layout_marginTop="54dp"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/view_galery"
-        android:id="@+id/button_view_gallery"
-        android:enabled="false"
-        android:layout_above="@+id/button_login"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"
-        android:onClick="onClick"/>
-
-</RelativeLayout>
->>>>>>> 1970ca9b1af3033d4f4009e26097a64323f4d52d

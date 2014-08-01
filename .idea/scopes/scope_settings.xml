@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 <component name="DependencyValidationManager">
   <state>
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </state>
-=======
-<component name="DependencyValidationManager">
-  <state>
-    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
-  </state>
->>>>>>> 1970ca9b1af3033d4f4009e26097a64323f4d52d
 </component>
