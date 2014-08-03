@@ -89,22 +89,21 @@ public class ViewFragment extends Fragment {
         String title = ViewPagerActivity.sGalleryItems[mPageNumber].title;
         if (mPageNumber == MainActivity.mStartPosition) {
             if (ViewPagerActivity.sNumberOfPages > 1) {
-                textViewUp.setVisibility(View.VISIBLE);
                 textViewUp.setText((mPageNumber + 1) + "/" + ViewPagerActivity.sNumberOfPages);
             } else {
-                textViewUp.setVisibility(View.INVISIBLE);
+                textViewUp.setText("");
             }
             if (title.length() > 0) {
                 textViewButtom.setTextColor(Color.WHITE);
                 textViewButtom.setText(ViewPagerActivity.sGalleryItems[mPageNumber].title);
             } else  {
-                textViewButtom.setVisibility(View.INVISIBLE);
+                textViewButtom.setText("");
             }
         } else {
-            textViewUp.setVisibility(View.INVISIBLE);
-            textViewButtom.setVisibility(View.INVISIBLE);
+            textViewButtom.setText("");
+            textViewUp.setText("");
         }
-     mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
+        mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
         if (ViewPagerActivity.sGalleryItems[mPageNumber].img_url.contains("youtube")) {
             Matcher m;
             m = YoutubePattern.matcher(ViewPagerActivity.sGalleryItems[mPageNumber].img_url);
@@ -121,13 +120,11 @@ public class ViewFragment extends Fragment {
                         .getErrorDialog(getActivity(), RESOLVE_SERVICE_MISSING).show();
             }
         } else {
-
             Picasso.with(MyApplication.getAppContext())
                     .load(ViewPagerActivity.sGalleryItems[mPageNumber].thumb_img_url)
                     .into(target);
         }
         return view;
     }
-
 }
 

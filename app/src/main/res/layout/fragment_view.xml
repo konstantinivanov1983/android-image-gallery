@@ -10,10 +10,13 @@
         android:layout_height="fill_parent"
         android:background="@android:color/black"/>
     <TextView
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:id="@+id/text_title"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
         android:gravity="center"
+
         android:background="#33000000"
         android:layout_gravity="center_horizontal|bottom"
         />
@@ -21,8 +24,11 @@
     <TextView
         android:id="@+id/img_number"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:gravity="center"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+
         android:background="#33000000"
         android:textColor="#FFF"
         android:layout_gravity="top|center_horizontal"/>

@@ -15,7 +15,7 @@ import konstantinivanov.mygallery.models.GalleryItem;
 public class MainActivity extends Activity {
 
     final String TAG = "MyLogs";
-    public static int mStartPosition = 0;             //Picture to start from
+    public static int mStartPosition = 20;             //Picture to start from
     GalleryItem[] mGalleryItem;
 
     @Override

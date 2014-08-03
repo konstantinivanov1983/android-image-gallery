@@ -20,7 +20,7 @@ public class ImageLoad {
         sImageLoader = ImageLoader.getInstance();
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .showImageOnLoading(drawable)
-                .imageScaleType(ImageScaleType.NONE)    //add 22.07
+                .imageScaleType(ImageScaleType.NONE)
                 .build();
         sImageLoader.displayImage(url, view, options);
     }

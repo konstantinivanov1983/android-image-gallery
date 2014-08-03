@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,7 +65,7 @@ public class ViewPagerActivity extends FragmentActivity {
             }
         } catch (Exception e) {
             Log.d(TAG, " Error : " + e);
-      }
+            }
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setBackgroundColor(Color.BLACK);
         final ImgurFragmentPagerAdapter pagerAdapter = new ImgurFragmentPagerAdapter(getSupportFragmentManager());
@@ -72,6 +73,7 @@ public class ViewPagerActivity extends FragmentActivity {
         mPageSelected = getIntent().getExtras().getInt("start position");
         mViewPager.setCurrentItem(getIntent().getExtras().getInt("start position"));
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
@@ -90,21 +92,18 @@ public class ViewPagerActivity extends FragmentActivity {
                         .findViewById(R.id.text_title);
                 if (state == 0 ) {
                     if (sNumberOfPages>1) {
-                        mTextViewUp.setVisibility(View.VISIBLE);
-                        mTextViewUp.setText((mPageSelected + 1) + "/" + sNumberOfPages);
+                        mTextViewUp.setText((mPageSelected + 1) + " / " + sNumberOfPages);
                     }
                     String title = sGalleryItems[mPageSelected].title;
                     if (title.length() > 0) {
-                        mTextViewBottom.setVisibility(View.VISIBLE);
                         mTextViewBottom.setTextColor(Color.WHITE);
                         mTextViewBottom.setText(title);
                     }
                 }
                 else {
-                    mTextViewUp.setVisibility(View.INVISIBLE);
-                    mTextViewBottom.setVisibility(View.INVISIBLE);
+                    mTextViewUp.setText("");
+                    mTextViewBottom.setText("");
                 }
-
             }
         });
 
