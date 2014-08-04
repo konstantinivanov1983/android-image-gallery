@@ -54,7 +54,6 @@ public class ViewFragment extends Fragment {
         return fragment;
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +62,7 @@ public class ViewFragment extends Fragment {
     }
 
     private com.squareup.picasso.Target target = new com.squareup.picasso.Target() {
+
         @Override
         public void onPrepareLoad(Drawable drawable) {
         }
@@ -84,25 +84,6 @@ public class ViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         View view = inflater.inflate(R.layout.fragment_view, null);
         mImageViewTouch = (TouchImageView) view.findViewById(R.id.touch_image_view);
-        TextView textViewUp = (TextView) view.findViewById(R.id.img_number);
-        TextView textViewButtom = (TextView) view.findViewById(R.id.text_title);
-        String title = ViewPagerActivity.sGalleryItems[mPageNumber].title;
-        if (mPageNumber == MainActivity.mStartPosition) {
-            if (ViewPagerActivity.sNumberOfPages > 1) {
-                textViewUp.setText((mPageNumber + 1) + "/" + ViewPagerActivity.sNumberOfPages);
-            } else {
-                textViewUp.setText("");
-            }
-            if (title.length() > 0) {
-                textViewButtom.setTextColor(Color.WHITE);
-                textViewButtom.setText(ViewPagerActivity.sGalleryItems[mPageNumber].title);
-            } else  {
-                textViewButtom.setText("");
-            }
-        } else {
-            textViewButtom.setText("");
-            textViewUp.setText("");
-        }
         mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
         if (ViewPagerActivity.sGalleryItems[mPageNumber].img_url.contains("youtube")) {
             Matcher m;

@@ -15,7 +15,7 @@ import konstantinivanov.mygallery.models.GalleryItem;
 public class MainActivity extends Activity {
 
     final String TAG = "MyLogs";
-    public static int mStartPosition = 01;             //Picture to start from
+    public static int mStartPosition = 0;             //Picture to start from
     GalleryItem[] mGalleryItem;
 
     @Override
@@ -46,10 +46,8 @@ public class MainActivity extends Activity {
             case R.id.button_view_gallery:
                 Bundle bundle  = new Bundle();
                 mGalleryItem = ImgurAuthinification.getInstance().returnGalleryItems();
-                Log.d(TAG, "Length of array in mainactivity" + mGalleryItem.length);
                 bundle.putParcelableArray("gallery items", mGalleryItem );
                 bundle.putInt("start position", mStartPosition);
-                Log.d(TAG,"Start ViewagerActivity !!!!!!");
                 Intent intentGallery = new Intent(this, ViewPagerActivity.class);
                 intentGallery.putExtras(bundle);
                 startActivity(intentGallery);

@@ -9,12 +9,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -33,9 +31,6 @@ public class ViewPagerActivity extends FragmentActivity {
     public static int sNumberOfPages;
     public static ViewPager mViewPager;
     int mPageSelected;
-    TextView mTextViewUp;
-    TextView mTextViewBottom;
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,7 +53,6 @@ public class ViewPagerActivity extends FragmentActivity {
         try {
             Parcelable[] parcelableArray =getIntent().getExtras().getParcelableArray("gallery items");
             sNumberOfPages = parcelableArray.length;
-            Log.d(TAG, "Length of ParcelableArray : " + parcelableArray.length);
             sGalleryItems = new GalleryItem[parcelableArray.length];
             for (int i = 0; i<parcelableArray.length; i++) {
                 sGalleryItems[i] = (GalleryItem) parcelableArray[i];
@@ -66,11 +60,12 @@ public class ViewPagerActivity extends FragmentActivity {
         } catch (Exception e) {
             Log.d(TAG, " Error : " + e);
             }
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = (ViewPager) findViewById(R.id.pager_ver2);
         mViewPager.setBackgroundColor(Color.BLACK);
         final ImgurFragmentPagerAdapter pagerAdapter = new ImgurFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
         mPageSelected = getIntent().getExtras().getInt("start position");
+        setTextToImage(mPageSelected);
         mViewPager.setCurrentItem(getIntent().getExtras().getInt("start position"));
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -80,49 +75,34 @@ public class ViewPagerActivity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                mPageSelected = position;
+                setTextToImage(position);
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-                ViewFragment fragment = (ViewFragment) pagerAdapter
-                        .instantiateItem(mViewPager, mPageSelected);
-                mTextViewUp = (TextView) fragment.getView().findViewById(R.id.img_number);
-                mTextViewBottom = (TextView) fragment.getView()
-                        .findViewById(R.id.text_title);
-                if (state == 0 ) {
-                    if (sNumberOfPages>1) {
-                        mTextViewUp.setText((mPageSelected + 1) + " / " + sNumberOfPages);
-                    }
-                    String title = sGalleryItems[mPageSelected].title;
-                    if (title.length() > 0) {
-                        mTextViewBottom.setTextColor(Color.WHITE);
-                        mTextViewBottom.setText(title);
-                    }
-                }
-                else {
-                    mTextViewUp.setText("");
-                    mTextViewBottom.setText("");
-                }
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
+    }
 
+    public void setTextToImage(int position) {
+        TextView textViewUp = (TextView) findViewById(R.id.img_number);
+        TextView textViewBottom = (TextView) findViewById(R.id.img_title);
+        String title = sGalleryItems[position].title;
+        if (sNumberOfPages > 1) {
+            textViewUp.setText((position + 1) + " / " + sNumberOfPages);
+        } else {
+            textViewUp.setText("");
+        }
+        if (title.length() > 0) {
+            textViewBottom.setText(title);
+        } else {
+            textViewBottom.setText("");
+        }
     }
 
     public static class ImgurFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
         public ImgurFragmentPagerAdapter (FragmentManager fm) {
             super(fm);
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            return super.instantiateItem(container, position);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            super.destroyItem(container, position, object);
         }
 
         @Override
