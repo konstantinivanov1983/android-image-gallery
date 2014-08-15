@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </android.support.v4.view.ViewPager>
+      </LinearLayout>
+
+    <TextView
+        android:id="@+id/img_number"
+        android:gravity="center"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gallery_text_color"
+        android:layout_gravity="top"
+        android:background="@color/gallery_textview_background"
+        />
+
+    <TextView
+        android:id="@+id/img_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:gravity="center"
+        android:paddingBottom="3dp"
+        android:layout_gravity="bottom"
+        android:background="@color/gallery_textview_background"
+        android:textColor="@color/gallery_text_color"/>
+
+</FrameLayout><!-- From: file:/C:/AndroidStudio/WorkFlow/Projects/MyGallery/demo3.git/library/src/main/res/layout/activity_viewpager.xml -->

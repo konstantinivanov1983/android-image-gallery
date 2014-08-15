@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="main" >
+        <source path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res" >
+            <file
+                name="activity_viewpager"
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\layout\activity_viewpager.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="fragment_view"
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\layout\fragment_view.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="main"
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\menu\main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\values\dimens.xml"
+                qualifiers="" >
+                <dimen name="activity_vertical_margin" >16dp
+                </dimen>
+                <dimen name="activity_horizontal_margin" >16dp
+                </dimen>
+            </file>
+            <file
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\values\strings.xml"
+                qualifiers="" >
+                <string name="gallery_app_name" >Fullscreen Image Gallery
+                </string>
+
+                <color name="gallery_textview_background" >#33000000
+                </color>
+
+                <string name="gellery_action_settings" >Settings
+                </string>
+
+                <color name="gallery_text_color" >#FFF
+                </color>
+            </file>
+            <file
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\values-ru\dimens.xml"
+                qualifiers="ru" >
+                <dimen name="activity_vertical_margin" >16dp
+                </dimen>
+                <dimen name="activity_horizontal_margin" >16dp
+                </dimen>
+            </file>
+            <file
+                path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\main\res\values-ru\strings.xml"
+                qualifiers="ru" >
+                <string name="gallery_app_name_ru" >Галерея
+                </string>
+                <string name="gellery_action_settings_ru" >Настройки
+                </string>
+            </file>
+        </source>
+        <source path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\build\generated\res\rs\release" />
+        <source path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\build\generated\res\generated\release" />
+    </dataSet>
+    <dataSet config="release" >
+        <source path="C:\AndroidStudio\WorkFlow\Projects\MyGallery\demo3.git\library\src\release\res" />
+    </dataSet>
+
+</merger>
