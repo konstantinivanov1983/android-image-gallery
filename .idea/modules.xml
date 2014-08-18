@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
@@ -9,3 +10,15 @@
   </component>
 </project>
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SlideViewDemo.iml" filepath="$PROJECT_DIR$/SlideViewDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SlideViewDemo/SlideViewDemo-SlideViewDemo.iml" filepath="$PROJECT_DIR$/SlideViewDemo/SlideViewDemo-SlideViewDemo.iml" />
+    </modules>
+  </component>
+</project>
+
+>>>>>>> 2e520b008ff46b8c0381fae804079745447879bb
