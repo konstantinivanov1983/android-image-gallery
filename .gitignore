@@ -3,8 +3,8 @@ local.properties
 /.idea/workspace.xml
 .DS_Store
 build/
-.idea
+.idea/
 *.iml
 library/proguard-rules.pro
 demo/proguard-rules.pro
-/local.properties
+local.properties
