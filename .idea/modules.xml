@@ -1,24 +1,12 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MyGallery.iml" filepath="$PROJECT_DIR$/MyGallery.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo3.git.iml" filepath="$PROJECT_DIR$/demo3.git.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidImageGallery.iml" filepath="$PROJECT_DIR$/AndroidImageGallery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>
 
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/SlideViewDemo.iml" filepath="$PROJECT_DIR$/SlideViewDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SlideViewDemo/SlideViewDemo-SlideViewDemo.iml" filepath="$PROJECT_DIR$/SlideViewDemo/SlideViewDemo-SlideViewDemo.iml" />
-    </modules>
-  </component>
-</project>
-
->>>>>>> 2e520b008ff46b8c0381fae804079745447879bb

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-include ':app'
-=======
-include ':SlideViewDemo'
->>>>>>> 2e520b008ff46b8c0381fae804079745447879bb
+include ':library', ':demo'
