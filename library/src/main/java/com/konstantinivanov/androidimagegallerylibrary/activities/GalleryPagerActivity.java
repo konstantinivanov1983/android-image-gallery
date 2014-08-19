@@ -16,6 +16,8 @@ import com.konstantinivanov.androidimagegallerylibrary.R;
 import com.konstantinivanov.androidimagegallerylibrary.fragments.GalleryFragment;
 import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
 import com.konstantinivanov.androidimagegallerylibrary.models.GetParcelableArray;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 
 /**
@@ -33,6 +35,10 @@ public class GalleryPagerActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewpager);
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration
+                .Builder(this)
+                .build();
+        ImageLoader.getInstance().init(configuration);
         try {
             mGalleryItems = new GetParcelableArray(this).getArray();
         } catch (Exception e) {

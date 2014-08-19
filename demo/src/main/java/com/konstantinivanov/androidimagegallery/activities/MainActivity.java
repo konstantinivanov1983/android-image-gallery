@@ -12,8 +12,7 @@ import com.konstantinivanov.androidimagegallery.authenticator.ImgurAuthinificati
 import com.konstantinivanov.androidimagegallery.R;
 import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity;
 import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
 
 /**
  * Created by Администратор on 16.08.2014.
@@ -32,10 +31,6 @@ public class MainActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration
-                .Builder(this)
-                .build();
-        ImageLoader.getInstance().init(configuration);
         mImgurAuthinification = new ImgurAuthinification(this);
     }
 
