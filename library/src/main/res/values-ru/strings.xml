@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="gallery_app_name">AndroidImageGallery</string>
-    <string name="gallery_action_settings">Настройки</string>
+    <string name="gallery_app_name">Галлерея</string>
+    <string name="gallery_action_settings">Выйти</string>
 
 </resources>

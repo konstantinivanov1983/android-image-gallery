@@ -10,6 +10,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.konstantinivanov.androidimagegallerylibrary.R;
@@ -26,10 +30,24 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 public class GalleryPagerActivity extends FragmentActivity {
 
     public final static String TAG = "MyLogs";
+    final String POSITION = "start position";
     GalleryItem[] mGalleryItems;
     int mNumberOfPages;
     ViewPager mViewPager;
     int mPageSelected;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +62,15 @@ public class GalleryPagerActivity extends FragmentActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (mGalleryItems.length == 0 ) {
+            Log.d(TAG, " GalleryItems is 0");
+        }
         mNumberOfPages = mGalleryItems.length;
         mViewPager = (ViewPager) findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.viewpager);
         mViewPager.setBackgroundColor(Color.BLACK);
         final ImgurFragmentPagerAdapter pagerAdapter = new ImgurFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
-        mPageSelected = getIntent().getExtras().getInt("start position");
+        mPageSelected = getIntent().getExtras().getInt(POSITION);
         if (mPageSelected > mNumberOfPages) {
             mPageSelected = 0;
         }
