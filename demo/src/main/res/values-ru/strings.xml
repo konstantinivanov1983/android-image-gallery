@@ -5,6 +5,5 @@
     <string name="button_login">Авторизоваться в Imgur</string>
     <string name="button_logout">Выйти</string>
     <string name="view_galery">Показать фото</string>
-    <color name="background_color">#646464</color>
 
 </resources>

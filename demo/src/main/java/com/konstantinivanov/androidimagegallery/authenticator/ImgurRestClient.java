@@ -19,7 +19,7 @@ public class ImgurRestClient {
 
     public static void get(String url, RequestParams params, Context context, AsyncHttpResponseHandler responseHandler) {
         getsClient().addHeader("Authorization", "Bearer " + context
-                .getSharedPreferences(ImgurAuthinification.SHARED_PREFS, 0)
+                .getSharedPreferences(ImgurAuthentication.SHARED_PREFS, 0)
                 .getString("access_token", null));
         getsClient().get(url, params, responseHandler);
     }

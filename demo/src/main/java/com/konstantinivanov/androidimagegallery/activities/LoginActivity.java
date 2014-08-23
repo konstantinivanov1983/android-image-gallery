@@ -6,7 +6,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.konstantinivanov.androidimagegallery.R;
-import com.konstantinivanov.androidimagegallery.authenticator.ImgurAuthinification;
+import com.konstantinivanov.androidimagegallery.authenticator.ImgurAuthentication;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
                     m = expiresInPattern.matcher(url);
                     m.find();
                     long expiresIn = Long.valueOf(m.group(1));
-                    (new ImgurAuthinification(mActivity)).saveToken(accessToken, refreshToken, expiresIn);
+                    (new ImgurAuthentication(mActivity)).saveToken(accessToken, refreshToken, expiresIn);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

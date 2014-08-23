@@ -29,8 +29,10 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
  */
 public class GalleryPagerActivity extends FragmentActivity {
 
+
     public final static String TAG = "MyLogs";
-    final String POSITION = "start position";
+    final static String POSITION = "start position";
+    final static String GALLERY_ITEMS = "gallery items";
     GalleryItem[] mGalleryItems;
     int mNumberOfPages;
     ViewPager mViewPager;
@@ -52,7 +54,7 @@ public class GalleryPagerActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_viewpager);
+        setContentView(R.layout.aig_activity_gallerypager);
         ImageLoaderConfiguration configuration = new ImageLoaderConfiguration
                 .Builder(this)
                 .build();
@@ -92,9 +94,12 @@ public class GalleryPagerActivity extends FragmentActivity {
         });
     }
 
-    public static void startActivity(Context context, Bundle bundle)
+    public static void startActivity(Context context, GalleryItem[] galleryItems, int startPosition)
     {
         Intent intent = new Intent(context, GalleryPagerActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArray(GALLERY_ITEMS, galleryItems);
+        bundle.putInt(POSITION, startPosition);
         intent.putExtras(bundle);
         context.startActivity(intent);
     }

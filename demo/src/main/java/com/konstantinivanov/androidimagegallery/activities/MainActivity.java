@@ -4,11 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.konstantinivanov.androidimagegallery.authenticator.ImgurAuthinification;
+import com.konstantinivanov.androidimagegallery.authenticator.ImgurAuthentication;
 import com.konstantinivanov.androidimagegallery.R;
 import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity;
 import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
@@ -19,25 +18,22 @@ import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
  */
 public class MainActivity extends Activity{
 
-    final String GALLERY_ITEMS = "gallery items";
-    final String POSITION = "start position";
-    public static int sStartPosition = 0;             //Picture to start from
-    GalleryItem[] mGalleryItem;
+    int mStartPosition = 0;             //Picture to start from
     Button mButtonViewGallery;
     Boolean mIsLoggedIn;
-    ImgurAuthinification mImgurAuthinification;
+    ImgurAuthentication mImgurAuthentication;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mImgurAuthinification = new ImgurAuthinification(this);
+        mImgurAuthentication = new ImgurAuthentication(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mIsLoggedIn = mImgurAuthinification.isLoggedIn();
+        mIsLoggedIn = mImgurAuthentication.isLoggedIn();
         findViewById(R.id.button_view_gallery).setEnabled(false);
         findViewById(R.id.button_login).setEnabled(!mIsLoggedIn);
         findViewById(R.id.button_logout).setEnabled(mIsLoggedIn);
@@ -50,17 +46,14 @@ public class MainActivity extends Activity{
                 startActivity(intentLogin);
                 break;
             case R.id.button_logout:
-                mImgurAuthinification.logout();
+                mImgurAuthentication.logout();
                 findViewById(R.id.button_view_gallery).setEnabled(false);
                 findViewById(R.id.button_logout).setEnabled(false);
                 findViewById(R.id.button_login).setEnabled(true);
                 break;
             case R.id.button_view_gallery:
-                Bundle bundle  = new Bundle();
-                mGalleryItem = mImgurAuthinification.returnGalleryItems();
-                bundle.putParcelableArray(GALLERY_ITEMS, mGalleryItem );
-                bundle.putInt(POSITION, sStartPosition);
-                GalleryPagerActivity.startActivity(this, bundle);
+                GalleryPagerActivity.startActivity(this,
+                        mImgurAuthentication.getGalleryItems(), mStartPosition);
                 break;
         }
     }
@@ -76,7 +69,7 @@ public class MainActivity extends Activity{
 
         @Override
         protected Void doInBackground(Void... contexts) {
-            mImgurAuthinification.getNewAccessToken();
+            mImgurAuthentication.getNewAccessToken();
             return null;
         }
 

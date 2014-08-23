@@ -18,7 +18,7 @@ import org.json.JSONObject;
 /**
  * Created by Администратор on 16.08.2014.
  */
-public class ImgurAuthinification {
+public class ImgurAuthentication {
 
 
     static final String SHARED_PREFS = "imgur auth";
@@ -28,7 +28,7 @@ public class ImgurAuthinification {
     public GalleryItem[] mGalleryItems;
     public static Context mContext;
 
-    public ImgurAuthinification(Context context) {
+    public ImgurAuthentication(Context context) {
         mContext = context;
     }
 
@@ -137,7 +137,7 @@ public class ImgurAuthinification {
         }
     }
 
-    public GalleryItem[] returnGalleryItems() {
+    public GalleryItem[] getGalleryItems() {
         return mGalleryItems;
     }
 }
