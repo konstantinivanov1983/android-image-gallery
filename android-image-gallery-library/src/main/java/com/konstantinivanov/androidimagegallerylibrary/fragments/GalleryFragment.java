@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.konstantinivanov.androidimagegallerylibrary.R;
 import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity;
 import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
 import com.konstantinivanov.androidimagegallerylibrary.models.GetParcelableArray;
@@ -67,8 +68,8 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        View view = inflater.inflate(com.konstantinivanov.androidimagegallerylibrary.R.layout.aig_fragment_imageview, null);
-        mImageViewTouch = (TouchImageView) view.findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.touch_image_view);
+        View view = inflater.inflate(R.layout.aig_fragment_imageview, null);
+        mImageViewTouch = (TouchImageView) view.findViewById(R.id.touch_image_view);
         mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
         if ( mGalleryItems[mPageNumber].thumbImgUrl != null &
                 mGalleryItems[mPageNumber].imgUrl != null) {

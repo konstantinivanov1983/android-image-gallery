@@ -5,3 +5,10 @@ build/
 **/*.iml
 library/proguard-rules.pro
 demo/proguard-rules.pro
+.classpath
+.project
+.settings
+bin/
+gen/
+lint.xml
+project.properties

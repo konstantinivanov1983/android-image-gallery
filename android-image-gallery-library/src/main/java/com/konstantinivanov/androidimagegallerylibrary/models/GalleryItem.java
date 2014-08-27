@@ -12,10 +12,33 @@ public class GalleryItem implements Parcelable {
     public String thumbImgUrl;
     public String imgTitle;
 
-    public GalleryItem (String _url, String _thumb_img, String _title) {
-        imgUrl = _url;
-        thumbImgUrl = _thumb_img;
-        imgTitle = _title;
+    public GalleryItem (String imgUrl) {
+        // this(imgUrl, null);
+
+        // BUG:
+        this(imgUrl, imgUrl);
+    }
+
+    public GalleryItem (String imgUrl, String thumbImgUrl) {
+        this(imgUrl, thumbImgUrl, null);
+    }
+
+    public GalleryItem (String imgUrl, String thumbImgUrl, String imgTitle) {
+        this.imgUrl = imgUrl;
+        this.thumbImgUrl = thumbImgUrl;
+        this.imgTitle = imgTitle;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public String getThumbImgUrl() {
+        return thumbImgUrl;
+    }
+
+    public String getTitle() {
+        return imgTitle;
     }
 
     @Override

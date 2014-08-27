@@ -30,7 +30,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
  */
 public class GalleryPagerActivity extends FragmentActivity {
 
-
     public final static String TAG = "AndroidGalleryLogs";
     final static String POSITION = "start position";
     final static String GALLERY_ITEMS = "gallery items";
@@ -69,7 +68,7 @@ public class GalleryPagerActivity extends FragmentActivity {
             Log.d(TAG, " GalleryItems is 0");
         }
         mNumberOfPages = mGalleryItems.length;
-        mViewPager = (ViewPager) findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.viewpager);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPager.setBackgroundColor(Color.BLACK);
         final ImgurFragmentPagerAdapter pagerAdapter = new ImgurFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
@@ -95,6 +94,31 @@ public class GalleryPagerActivity extends FragmentActivity {
         });
     }
 
+    public static void startActivity(Context context, String imgUrl) 
+    {
+        startActivity(context, new GalleryItem[] {
+                new GalleryItem(imgUrl)
+            }, 0);
+    }
+
+    public static void startActivity(Context context, String imgUrls[], int position) 
+    {
+        if (imgUrls == null)
+            return;
+
+        int length = imgUrls.length;
+
+        if (length > 0 && position >= 0 && position < length) {
+            GalleryItem gis[] = new GalleryItem[length];
+
+            for (int i = 0; i < length; i++) {
+                gis[i] = new GalleryItem(imgUrls[i]);
+            }
+
+            startActivity(context, gis, position);
+        }
+    }
+
     public static void startActivity(Context context, GalleryItem[] galleryItems, int startPosition)
     {
         Intent intent = new Intent(context, GalleryPagerActivity.class);
@@ -106,8 +130,8 @@ public class GalleryPagerActivity extends FragmentActivity {
     }
 
     private void setTextToImage(int position) {
-        TextView textViewUp = (TextView) findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.img_number);
-        TextView textViewBottom = (TextView) findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.img_title);
+        TextView textViewUp = (TextView) findViewById(R.id.img_number);
+        TextView textViewBottom = (TextView) findViewById(R.id.img_title);
         textViewBottom.setBackgroundColor(getResources().getColor(R.color.gallery_transparent));
         String title = mGalleryItems[position].imgTitle;
         if (title == null) {
@@ -119,7 +143,7 @@ public class GalleryPagerActivity extends FragmentActivity {
             textViewUp.setText(" ");
             textViewUp.setBackgroundColor(Color.TRANSPARENT);
         }
-        if (title.length() > 0) {
+        if (title != null && title.length() > 0) {
             textViewBottom.setText(title);
         } else {
             textViewBottom.setText(" ");
