@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.konstantinivanov.androidimagegallerylibrary.R;
@@ -30,7 +31,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 public class GalleryPagerActivity extends FragmentActivity {
 
 
-    public final static String TAG = "MyLogs";
+    public final static String TAG = "AndroidGalleryLogs";
     final static String POSITION = "start position";
     final static String GALLERY_ITEMS = "gallery items";
     GalleryItem[] mGalleryItems;
@@ -107,16 +108,22 @@ public class GalleryPagerActivity extends FragmentActivity {
     private void setTextToImage(int position) {
         TextView textViewUp = (TextView) findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.img_number);
         TextView textViewBottom = (TextView) findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.img_title);
+        textViewBottom.setBackgroundColor(getResources().getColor(R.color.gallery_transparent));
         String title = mGalleryItems[position].imgTitle;
+        if (title == null) {
+            title = "";
+        }
         if (mNumberOfPages > 1) {
             textViewUp.setText((position + 1) + " / " + mNumberOfPages);
         } else {
             textViewUp.setText(" ");
+            textViewUp.setBackgroundColor(Color.TRANSPARENT);
         }
         if (title.length() > 0) {
             textViewBottom.setText(title);
         } else {
             textViewBottom.setText(" ");
+            textViewBottom.setBackgroundColor(Color.TRANSPARENT);
         }
     }
 

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity;
 import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
 import com.konstantinivanov.androidimagegallerylibrary.models.GetParcelableArray;
 import com.konstantinivanov.androidimagegallerylibrary.models.ImageLoad;
@@ -19,7 +20,6 @@ import com.squareup.picasso.Picasso;
  * Created by Администратор on 13.08.2014.
  */
 public class GalleryFragment extends android.support.v4.app.Fragment {
-    final static String TAG = "MyLogs";
     static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
     TouchImageView mImageViewTouch;
     int mPageNumber;
@@ -61,7 +61,7 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
 
         @Override
         public void onBitmapFailed(Drawable drawable) {
-            Log.d(TAG, " Error loading bitmap");
+            Log.d(GalleryPagerActivity.TAG, " Error loading bitmap");
         }
     };
 
@@ -70,9 +70,18 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(com.konstantinivanov.androidimagegallerylibrary.R.layout.aig_fragment_imageview, null);
         mImageViewTouch = (TouchImageView) view.findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.touch_image_view);
         mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
-        Picasso.with(getActivity())
-                .load(mGalleryItems[mPageNumber].thumbImgUrl)
-                .into(mTarget);
+        if ( mGalleryItems[mPageNumber].thumbImgUrl != null &
+                mGalleryItems[mPageNumber].imgUrl != null) {
+            Picasso.with(getActivity())
+                    .load(mGalleryItems[mPageNumber].thumbImgUrl)
+                    .into(mTarget);
+        }
+        else if (mGalleryItems[mPageNumber].thumbImgUrl == null ) {
+            ImageLoad.getImage(null, mGalleryItems[mPageNumber].imgUrl, mImageViewTouch);
+        }
+        else {
+            ImageLoad.getImage(null, mGalleryItems[mPageNumber].thumbImgUrl, mImageViewTouch);
+        }
         return view;
     }
 }

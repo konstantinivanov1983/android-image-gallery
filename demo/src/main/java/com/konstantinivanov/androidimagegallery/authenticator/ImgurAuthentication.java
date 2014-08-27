@@ -24,7 +24,7 @@ public class ImgurAuthentication {
     static final String SHARED_PREFS = "imgur auth";
     static final String GET_URL = "https://api.imgur.com/3/gallery/r/pics/";
     static final String POST_URL = "https://api.imgur.com/oauth2/token";
-    static final String TAG = "MyLogs";
+    static final String TAG = "AndroidGalleryLogs";
     public GalleryItem[] mGalleryItems;
     public static Context mContext;
 
@@ -121,7 +121,6 @@ public class ImgurAuthentication {
                             String st1 = string.substring(0, string.lastIndexOf("."));
                             st1 = st1 + "t" + ".jpg";
                             mGalleryItems[i] = new GalleryItem(
-                                    jsonObject.getString("id"),
                                     jsonObject.getString("link"),
                                     st1,
                                     jsonObject.getString("title"));

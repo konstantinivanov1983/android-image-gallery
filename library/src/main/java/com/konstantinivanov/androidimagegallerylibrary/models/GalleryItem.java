@@ -8,13 +8,11 @@ import android.os.Parcelable;
  */
 public class GalleryItem implements Parcelable {
 
-    public String id;
     public String imgUrl;
     public String thumbImgUrl;
     public String imgTitle;
 
-    public GalleryItem (String _id, String _url, String _thumb_img, String _title) {
-        id = _id;
+    public GalleryItem (String _url, String _thumb_img, String _title) {
         imgUrl = _url;
         thumbImgUrl = _thumb_img;
         imgTitle = _title;
@@ -27,7 +25,6 @@ public class GalleryItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(id);
         parcel.writeString(imgUrl);
         parcel.writeString(thumbImgUrl);
         parcel.writeString(imgTitle);
@@ -47,7 +44,6 @@ public class GalleryItem implements Parcelable {
     };
 
     private GalleryItem(Parcel parcel){
-        id = parcel.readString();
         imgUrl = parcel.readString();
         thumbImgUrl = parcel.readString();
         imgTitle = parcel.readString();

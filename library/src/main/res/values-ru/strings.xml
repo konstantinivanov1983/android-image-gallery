@@ -3,5 +3,6 @@
 
     <string name="gallery_app_name">Галлерея</string>
     <string name="gallery_action_settings">Выйти</string>
+    <color name="gallery_transparent">#33000000</color>
 
 </resources>
