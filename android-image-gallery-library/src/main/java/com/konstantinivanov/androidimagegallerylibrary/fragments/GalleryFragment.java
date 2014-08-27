@@ -71,7 +71,7 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.aig_fragment_imageview, null);
         mImageViewTouch = (TouchImageView) view.findViewById(R.id.touch_image_view);
         mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
-        if ( mGalleryItems[mPageNumber].thumbImgUrl != null &
+        if ( mGalleryItems[mPageNumber].thumbImgUrl != null &&
                 mGalleryItems[mPageNumber].imgUrl != null) {
             Picasso.with(getActivity())
                     .load(mGalleryItems[mPageNumber].thumbImgUrl)
