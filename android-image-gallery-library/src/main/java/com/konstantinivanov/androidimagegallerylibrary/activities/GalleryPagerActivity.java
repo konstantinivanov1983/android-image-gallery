@@ -29,7 +29,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
  */
 public class GalleryPagerActivity extends FragmentActivity {
 
-
     public final static String TAG = "MyLogs";
     final static String POSITION = "start position";
     final static String GALLERY_ITEMS = "gallery items";
@@ -94,6 +93,31 @@ public class GalleryPagerActivity extends FragmentActivity {
         });
     }
 
+    public static void startActivity(Context context, String imgUrl) 
+    {
+        startActivity(context, new GalleryItem[] {
+                new GalleryItem(imgUrl)
+            }, 0);
+    }
+
+    public static void startActivity(Context context, String imgUrls[], int position) 
+    {
+        if (imgUrls == null)
+            return;
+
+        int length = imgUrls.length;
+
+        if (length > 0 && position >= 0 && position < length) {
+            GalleryItem gis[] = new GalleryItem[length];
+
+            for (int i = 0; i < length; i++) {
+                gis[i] = new GalleryItem(imgUrls[i]);
+            }
+
+            startActivity(context, gis, position);
+        }
+    }
+
     public static void startActivity(Context context, GalleryItem[] galleryItems, int startPosition)
     {
         Intent intent = new Intent(context, GalleryPagerActivity.class);
@@ -113,7 +137,7 @@ public class GalleryPagerActivity extends FragmentActivity {
         } else {
             textViewUp.setText(" ");
         }
-        if (title.length() > 0) {
+        if (title != null && title.length() > 0) {
             textViewBottom.setText(title);
         } else {
             textViewBottom.setText(" ");

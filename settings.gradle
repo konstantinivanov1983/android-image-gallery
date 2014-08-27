@@ -1,1 +1,1 @@
-include ':library', ':demo'
+include ':android-image-gallery-library', ':android-image-gallery-demo'
