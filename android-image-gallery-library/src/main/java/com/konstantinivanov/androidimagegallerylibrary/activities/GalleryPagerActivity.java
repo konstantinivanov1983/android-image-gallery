@@ -30,7 +30,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
  */
 public class GalleryPagerActivity extends FragmentActivity {
 
-    public final static String TAG = "AndroidGalleryLogs";
+    public final static String TAG = "AndroidImageGalleryLogs";
     final static String POSITION = "start position";
     final static String GALLERY_ITEMS = "gallery items";
     GalleryItem[] mGalleryItems;
