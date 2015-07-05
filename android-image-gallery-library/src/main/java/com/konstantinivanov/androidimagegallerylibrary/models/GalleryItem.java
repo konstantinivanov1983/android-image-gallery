@@ -1,44 +1,52 @@
+/**
+ * GalleryItem.java ---
+ * <p/>
+ * Copyright (C) 2014 Konstantin Ivanov
+ * <p/>
+ * Author: Konstantin Ivanov <ivanov@kula-tech.com>
+ */
 package com.konstantinivanov.androidimagegallerylibrary.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Администратор on 13.08.2014.
+ * Created:
+ *
+ * @author Konstantin Ivanov
+ * @version 2
+ * @since 13.08.2014.
  */
 public class GalleryItem implements Parcelable {
 
-    public String imgUrl;
-    public String thumbImgUrl;
-    public String imgTitle;
+    String mImgUrl;
+    String mThumbUrl;
+    String mImgTitle;
 
-    public GalleryItem (String imgUrl) {
-        // this(imgUrl, null);
-
-        // BUG:
-        this(imgUrl, imgUrl);
+    public GalleryItem(String imgUrl) {
+        this(imgUrl, null);
     }
 
-    public GalleryItem (String imgUrl, String thumbImgUrl) {
+    public GalleryItem(String imgUrl, String thumbImgUrl) {
         this(imgUrl, thumbImgUrl, null);
     }
 
-    public GalleryItem (String imgUrl, String thumbImgUrl, String imgTitle) {
-        this.imgUrl = imgUrl;
-        this.thumbImgUrl = thumbImgUrl;
-        this.imgTitle = imgTitle;
+    public GalleryItem(String imgUrl, String thumbImgUrl, String imgTitle) {
+        mImgUrl = imgUrl;
+        mThumbUrl = thumbImgUrl;
+        mImgTitle = imgTitle;
     }
 
     public String getImgUrl() {
-        return imgUrl;
+        return mImgUrl;
     }
 
-    public String getThumbImgUrl() {
-        return thumbImgUrl;
+    public String getThumbUrl() {
+        return mThumbUrl;
     }
 
     public String getTitle() {
-        return imgTitle;
+        return mImgTitle;
     }
 
     @Override
@@ -48,15 +56,15 @@ public class GalleryItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(imgUrl);
-        parcel.writeString(thumbImgUrl);
-        parcel.writeString(imgTitle);
+        parcel.writeString(mImgUrl);
+        parcel.writeString(mThumbUrl);
+        parcel.writeString(mImgTitle);
     }
 
     public static final Creator<GalleryItem> CREATOR = new Creator<GalleryItem>() {
 
         @Override
-        public GalleryItem createFromParcel (Parcel in) {
+        public GalleryItem createFromParcel(Parcel in) {
             return new GalleryItem(in);
         }
 
@@ -66,10 +74,10 @@ public class GalleryItem implements Parcelable {
         }
     };
 
-    private GalleryItem(Parcel parcel){
-        imgUrl = parcel.readString();
-        thumbImgUrl = parcel.readString();
-        imgTitle = parcel.readString();
+    private GalleryItem(Parcel parcel) {
+        mImgUrl = parcel.readString();
+        mThumbUrl = parcel.readString();
+        mImgTitle = parcel.readString();
     }
 
-}
+} // GalleryItem

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="gallery_app_name">Галлерея</string>
-    <string name="gallery_action_settings">Выйти</string>
-    <color name="gallery_transparent">#33000000</color>
+  <string name="gallery_app_name">Галлерея</string>
+  <string name="gallery_action_settings">Выйти</string>
+  <color name="gallery_transparent">#33000000</color>
 
 </resources>

@@ -1,36 +1,43 @@
+/**
+ * GalleryFragment.java ---
+ * <p/>
+ * Copyright (C) 2014 Konstantin Ivanov
+ * <p/>
+ * Author: Konstantin Ivanov <ivanov@kula-tech.com>
+ */
 package com.konstantinivanov.androidimagegallerylibrary.fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.konstantinivanov.androidimagegallerylibrary.R;
-import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity;
 import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
-import com.konstantinivanov.androidimagegallerylibrary.models.GetParcelableArray;
-import com.konstantinivanov.androidimagegallerylibrary.models.ImageLoad;
 import com.konstantinivanov.androidimagegallerylibrary.models.TouchImageView;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**
- * Created by Администратор on 13.08.2014.
+ * Created:
+ *
+ * @author Konstantin Ivanov
+ * @version 2
+ * @since 13.08.2014.
  */
 public class GalleryFragment extends android.support.v4.app.Fragment {
-    static final String ARGUMENT_PAGE_NUMBER = "arg_page_number";
-    TouchImageView mImageViewTouch;
-    int mPageNumber;
-    Drawable mDrawable;
-    GalleryItem[] mGalleryItems;
 
-    public static GalleryFragment newInstance (int page) {
+    public static final String ARGS_ITEM = "args.aig.fragment.item";
+    public static final String EXTRA_ITEM = "extra.aig.fragment.item";
+
+    private TouchImageView mImageViewTouch;
+    private GalleryItem mGalleryItem;
+
+    public static GalleryFragment newInstance(GalleryItem item) {
         GalleryFragment fragment = new GalleryFragment();
         Bundle argument = new Bundle();
-        argument.putInt(ARGUMENT_PAGE_NUMBER, page);
+        argument.putParcelable(ARGS_ITEM, item);
         fragment.setArguments(argument);
         return fragment;
     }
@@ -39,50 +46,87 @@ public class GalleryFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        mPageNumber = getArguments().getInt(ARGUMENT_PAGE_NUMBER);
-        try {
-            mGalleryItems = new GetParcelableArray(getActivity()).getArray();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (savedInstanceState == null) {
+            if (getArguments() != null) {
+                Parcelable parcelable = getArguments().getParcelable(ARGS_ITEM);
+                if (parcelable != null && parcelable instanceof GalleryItem) {
+                    mGalleryItem = (GalleryItem) parcelable;
+                }
+            }
+        } else {
+            Parcelable parcelable = savedInstanceState.getParcelable(EXTRA_ITEM);
+            if (parcelable != null && parcelable instanceof GalleryItem) {
+                mGalleryItem = (GalleryItem) parcelable;
+            }
         }
     }
 
-    private com.squareup.picasso.Target mTarget = new com.squareup.picasso.Target() {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
+        View view = inflater.inflate(com.konstantinivanov.androidimagegallerylibrary.R.layout.aig_fragment_imageview, null);
+        mImageViewTouch = (TouchImageView) view.findViewById(com.konstantinivanov.androidimagegallerylibrary.R.id.touch_image_view);
+        return view;
+    }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        String thumb = mGalleryItem.getThumbUrl();
+        String url = mGalleryItem.getImgUrl();
+
+        if (isAdded()) {
+            if (thumb != null && thumb.length() > 0) {
+                Picasso.with(getActivity())
+                        .load(thumb)
+                        .into(mImageViewTouch, mCallback);
+            } else {
+                if (url != null && url.length() > 0) {
+                    Picasso.with(getActivity())
+                            .load(url)
+                            .into(mImageViewTouch);
+                } else {
+                    Picasso.with(getActivity())
+                            .load(getActivity().getResources().getString(R.string.maxim_url))
+                            .into(mImageViewTouch);
+                }
+            }
+        }
+    }
+
+    Callback mCallback = new Callback() {
         @Override
-        public void onPrepareLoad(Drawable drawable) {
+        public void onSuccess() {
+            if (mGalleryItem != null) {
+                String url = mGalleryItem.getImgUrl();
+                if (isAdded() && url != null && url.length() > 0) {
+                    Picasso.with(getActivity())
+                            .load(mGalleryItem.getImgUrl())
+                            .fit().centerInside()
+                            .placeholder(mImageViewTouch.getDrawable())
+                            .into(mImageViewTouch);
+                }
+            }
         }
 
         @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom loadedFrom) {
-            mDrawable = new BitmapDrawable(getActivity().getResources(),bitmap);
-            ImageLoad.getImage(mDrawable, mGalleryItems[mPageNumber].imgUrl,
-                    mImageViewTouch);
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable drawable) {
-            Log.d(GalleryPagerActivity.TAG, " Error loading bitmap");
+        public void onError() {
         }
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
-        View view = inflater.inflate(R.layout.aig_fragment_imageview, null);
-        mImageViewTouch = (TouchImageView) view.findViewById(R.id.touch_image_view);
-        mImageViewTouch.setBackgroundColor(getResources().getColor(android.R.color.black));
-        if ( mGalleryItems[mPageNumber].thumbImgUrl != null &&
-                mGalleryItems[mPageNumber].imgUrl != null) {
-            Picasso.with(getActivity())
-                    .load(mGalleryItems[mPageNumber].thumbImgUrl)
-                    .into(mTarget);
-        }
-        else if (mGalleryItems[mPageNumber].thumbImgUrl == null ) {
-            ImageLoad.getImage(null, mGalleryItems[mPageNumber].imgUrl, mImageViewTouch);
-        }
-        else {
-            ImageLoad.getImage(null, mGalleryItems[mPageNumber].thumbImgUrl, mImageViewTouch);
-        }
-        return view;
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(EXTRA_ITEM, mGalleryItem);
     }
-}
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mImageViewTouch = null;
+        mGalleryItem = null;
+        mCallback = null;
+    }
+
+} // GalleryFragment

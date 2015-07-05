@@ -9,8 +9,7 @@ import android.widget.Button;
 
 import com.konstantinivanov.androidimagegallery.authenticator.ImgurAuthentication;
 import com.konstantinivanov.androidimagegallery.R;
-import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity;
-import com.konstantinivanov.androidimagegallerylibrary.models.GalleryItem;
+import com.konstantinivanov.androidimagegallerylibrary.activities.GalleryActivity;
 
 
 /**
@@ -52,7 +51,7 @@ public class MainActivity extends Activity{
                 findViewById(R.id.button_login).setEnabled(true);
                 break;
             case R.id.button_view_gallery:
-                GalleryPagerActivity.startActivity(this,
+                GalleryActivity.startActivity(this,
                         mImgurAuthentication.getGalleryItems(), mStartPosition);
                 break;
         }

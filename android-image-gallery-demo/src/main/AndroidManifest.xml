@@ -21,7 +21,7 @@
         </activity>
 
         <activity android:name="com.konstantinivanov.androidimagegallery.activities.LoginActivity"></activity>
-        <activity android:name="com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity"></activity>
+        <activity android:name="com.konstantinivanov.androidimagegallerylibrary.activities.GalleryActivity"></activity>
         </application>
 
 </manifest>

@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+             android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewpager"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-        >
-        </android.support.v4.view.ViewPager>
-        </LinearLayout>
+  <android.support.v4.view.ViewPager
+          android:id="@+id/viewpager"
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:background="#000"
+          >
+  </android.support.v4.view.ViewPager>
 
-    <TextView
-        android:id="@+id/img_number"
-        android:gravity="center"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:layout_gravity="top"
-        android:background="#33000000"
-        />
+  <TextView
+          android:id="@+id/img_number"
+          android:gravity="center"
+          android:paddingTop="3dp"
+          android:paddingBottom="3dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:textColor="#FFF"
+          android:layout_gravity="top"
+          android:background="#33000000"
+          />
 
-    <TextView
-        android:id="@+id/img_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="3dp"
-        android:gravity="center"
-        android:paddingBottom="3dp"
-        android:layout_gravity="bottom"
-        android:background="#33000000"
-        android:textColor="#FFF"/>
+  <TextView
+          android:id="@+id/img_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:paddingTop="3dp"
+          android:gravity="center"
+          android:paddingBottom="3dp"
+          android:layout_gravity="bottom"
+          android:background="#33000000"
+          android:textColor="#FFF"/>
 
 </FrameLayout>

@@ -7,7 +7,7 @@
         android:allowBackup="true"
         android:label="@string/gallery_app_name" >
         <activity
-            android:name="com.konstantinivanov.androidimagegallerylibrary.activities.GalleryPagerActivity"
+            android:name=".activities.GalleryActivity"
             >
         </activity>
     </application>
