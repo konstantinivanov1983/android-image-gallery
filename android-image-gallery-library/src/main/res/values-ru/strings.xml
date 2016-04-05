@@ -5,4 +5,6 @@
   <string name="gallery_action_settings">Выйти</string>
   <color name="gallery_transparent">#33000000</color>
 
+  <string name="alert">Извините, что-то пошло не так</string>
+
 </resources>

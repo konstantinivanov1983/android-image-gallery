@@ -7,4 +7,6 @@
 
   <string name="maxim_url">http://toplogos.ru/images/thumbs/preview-logo-maxim.jpg</string>
 
+  <string name="alert">Sorry, something went wrong</string>
+
 </resources>

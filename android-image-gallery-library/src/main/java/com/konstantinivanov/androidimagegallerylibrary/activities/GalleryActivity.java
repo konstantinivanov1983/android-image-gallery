@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.konstantinivanov.androidimagegallerylibrary.R;
 import com.konstantinivanov.androidimagegallerylibrary.fragments.GalleryFragment;
@@ -98,7 +99,8 @@ public class GalleryActivity extends FragmentActivity {
                 Parcelable[] parcelables = bundle.getParcelableArray(ARGS_ITEMS);
                 mGalleryItems = null;
                 if (parcelables != null) {
-                    mGalleryItems = Arrays.copyOf(parcelables, parcelables.length, GalleryItem[].class);
+                    mGalleryItems
+                            = Arrays.copyOf(parcelables, parcelables.length, GalleryItem[].class);
                 }
                 mPageSelected = bundle.getInt(ARGS_POSITION);
             } catch (Exception e) {
@@ -106,8 +108,11 @@ public class GalleryActivity extends FragmentActivity {
             }
 
         } else {
-            mGalleryItems = (GalleryItem[]) savedInstanceState.getParcelableArray(EXTRA_ITEMS);
-            mPageSelected = savedInstanceState.getInt(EXTRA_POSITION);
+            Parcelable[] parcelable = savedInstanceState.getParcelableArray(EXTRA_ITEMS);
+            if (parcelable != null && parcelable instanceof GalleryItem[]) {
+                mGalleryItems = (GalleryItem[]) parcelable;
+                mPageSelected = savedInstanceState.getInt(EXTRA_POSITION);
+            }
         }
 
         if (mGalleryItems != null && mGalleryItems.length > 0) {
@@ -115,12 +120,17 @@ public class GalleryActivity extends FragmentActivity {
             if (mPageSelected > mNumberOfPages) {
                 mPageSelected = 0;
             }
+
+            ImgurFragmentPagerAdapter pagerAdapter
+                    = new ImgurFragmentPagerAdapter(getSupportFragmentManager());
+            mViewPager.setAdapter(pagerAdapter);
+            mViewPager.setCurrentItem(mPageSelected);
+            setTextToImage(mPageSelected);
+        } else {
+            Toast.makeText(GalleryActivity.this, getResources().getString(R.string.alert),
+                    Toast.LENGTH_SHORT).show();
         }
 
-        ImgurFragmentPagerAdapter pagerAdapter = new ImgurFragmentPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(pagerAdapter);
-        mViewPager.setCurrentItem(mPageSelected);
-        setTextToImage(mPageSelected);
     }
 
     @Override
@@ -131,9 +141,10 @@ public class GalleryActivity extends FragmentActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putParcelableArray(EXTRA_ITEMS, mGalleryItems);
         outState.putInt(EXTRA_POSITION, mPageSelected);
+
+        super.onSaveInstanceState(outState);
     }
 
     @Override
